@@ -34,7 +34,6 @@ const Index = () => {
 					<Route path="/editarGastos" element={<EditarGastos/>}/>
 					<Route path="/" element={<App/>}/>
 				</Routes>
-				<App />
 			</Contenedor>
 		</BrowserRouter>
 	);

@@ -1,7 +1,7 @@
 import React from "react";
 
 const RegistroUsuarios = () => {
-    return (  );
+    return ( <h1>Registro Usuario</h1> );
 }
  
 export default RegistroUsuarios;
