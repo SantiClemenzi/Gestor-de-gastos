@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+// paquetes
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 // estilos
 import './index.css';
 // fuente
@@ -14,6 +16,9 @@ import ListaGastos from './components/ListaGastos';
 import EditarGastos from './components/EditarGastos';
 // elementos
 import Contenedor from './elements/Contenedor';
+import Fondo from './elements/Fondo';
+// favicon
+import favicon from './images/logo.png';
 
 // cargamos las familias de fuente que queremos usar
 WebFont.load({
@@ -24,18 +29,24 @@ WebFont.load({
 
 const Index = () => {
 	return (
-		<BrowserRouter>
-			<Contenedor>
-				<Routes>
-					<Route path="/inicioSesion" element={<InicioSesion/>}/>
-					<Route path="/registroUsuario" element={<RegistroUsuario/>}/>
-					<Route path="/gastoCategoria" element={<GastoCategoria/>}/>
-					<Route path="/listaGastos" element={<ListaGastos/>}/>
-					<Route path="/editarGastos" element={<EditarGastos/>}/>
-					<Route path="/" element={<App/>}/>
-				</Routes>
-			</Contenedor>
-		</BrowserRouter>
+		<>
+			<Helmet>
+				<link rel="shortcut icon" href={favicon} type="image/x-icon" />
+			</Helmet>
+			<BrowserRouter>
+				<Contenedor>
+					<Routes>
+						<Route path="/inicioSesion" element={<InicioSesion />} />
+						<Route path="/registroUsuario" element={<RegistroUsuario />} />
+						<Route path="/gastoCategoria" element={<GastoCategoria />} />
+						<Route path="/listaGastos" element={<ListaGastos />} />
+						<Route path="/editarGastos" element={<EditarGastos />} />
+						<Route path="/" element={<App />} />
+					</Routes>
+				</Contenedor>
+			</BrowserRouter>
+			<Fondo />
+		</>
 	);
 };
 
