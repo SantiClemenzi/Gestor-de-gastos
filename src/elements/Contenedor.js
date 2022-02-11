@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Contenedor = styled.div`
     background: #fff;
     width: 90%;
-    max-width: 50rem; /*1110px*/
+    max-width: 70rem; /*1110px*/
     height: 90vh;
     max-height: 50rem;  /* 800px */
     overflow-y: auto;
