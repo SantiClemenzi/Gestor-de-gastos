@@ -18,7 +18,7 @@ const App = () => {
 				<ContenedorBotones>
 					<Boton to="/gastoCategoria">Categoria</Boton>
 					<Boton to="/listaGastos">Lista</Boton>
-					<Boton to="/">Cerrar sesion</Boton>
+					<Boton to="/inicioSesion">Cerrar sesion</Boton>
 				</ContenedorBotones>
 			</Header>
 		</>
