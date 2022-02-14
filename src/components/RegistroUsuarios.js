@@ -11,6 +11,7 @@ import {
 	Input,
 	ContenedorBoton,
 } from './../elements/ElementosDeFormulario';
+import Alerta from './../elements/Alerta';
 // imagen svg
 import { ReactComponent as SvgLogIn } from './../images/registro.svg';
 // recursos de firebase
@@ -24,6 +25,9 @@ const RegistroUsuarios = () => {
 	const [contraseña2, establecerContraseña2] = useState('');
 	// creamos el estado de navigate
 	const navigate = useNavigate();
+	// creamos el estado de Alerta
+	const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
+	const [alerta, cambiarAlerta] = useState({});
 
 	//cargamos los inputs en cada estado
 	const handleChange = (e) => {
@@ -45,27 +49,48 @@ const RegistroUsuarios = () => {
 	// validaciones de los inputs
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// establecemos el estado de alerta en false
+		cambiarEstadoAlerta(false);
+		cambiarAlerta({});
+
 		// funcion para verificar el email
 		const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
 
 		// validaciones para el registro de usuario
 		if (!expresionRegular.test(correo)) {
-			console.log('Ingrese un correo valido');
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({
+				tipo: 'error',
+				mensaje: 'Ingrese un correo valido',
+			});
 			return; //el return es para que deje de ejecutar codigo en caso que se cumpla la condicion
 		}
 		if (correo === '' || contraseña === '' || contraseña2 === '') {
-			console.log('Porfavor completa todos los datos');
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({
+				tipo: 'error',
+				mensaje: 'Porfavor completa todos los datos',
+			});
 			return; //el return es para que deje de ejecutar codigo en caso que se cumpla la condicion
 		}
 		if (contraseña !== contraseña2) {
-			console.log('las contraseñas no coinciden');
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({
+				tipo: 'error',
+				mensaje: 'Las contraseñas no coinciden',
+			});
 			return; //el return es para que deje de ejecutar codigo en caso que se cumpla la condicion
 		}
 
 		try {
 			// enviamos los datos a firebase
 			await createUserWithEmailAndPassword(auth, correo, contraseña2);
-			console.log('El usuario se registro con exito');
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({
+				tipo: 'exito',
+				mensaje: 'El usuario se registro con exito',
+			});
 			// redireccionamos la pagina a inicio
 			navigate('/');
 		} catch (error) {
@@ -88,7 +113,11 @@ const RegistroUsuarios = () => {
 					break;
 			}
 
-			console.log(mensaje);
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({
+				tipo: 'error',
+				mensaje: mensaje,
+			});
 		}
 	};
 	return (
@@ -136,6 +165,12 @@ const RegistroUsuarios = () => {
 					</Boton>
 				</ContenedorBoton>
 			</Formulario>
+			<Alerta
+				tipo={alerta.tipo}
+				mensaje={alerta.mensaje}
+				estadoAlerta={estadoAlerta}
+				cambiarEstadoAlerta={cambiarEstadoAlerta}
+			/>
 		</>
 	);
 };
