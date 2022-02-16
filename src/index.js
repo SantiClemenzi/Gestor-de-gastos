@@ -14,6 +14,7 @@ import RegistroUsuario from './components/RegistroUsuarios';
 import GastoCategoria from './components/GastosCategoria';
 import ListaGastos from './components/ListaGastos';
 import EditarGastos from './components/EditarGastos';
+import RutaPrivada from './components/RutaPrivada';
 // elementos
 import Contenedor from './elements/Contenedor';
 import Fondo from './elements/Fondo';
@@ -41,10 +42,39 @@ const Index = () => {
 						<Routes>
 							<Route path="/inicioSesion" element={<InicioSesion />} />
 							<Route path="/registroUsuario" element={<RegistroUsuario />} />
-							<Route path="/gastoCategoria" element={<GastoCategoria />} />
-							<Route path="/listaGastos" element={<ListaGastos />} />
-							<Route path="/editarGastos" element={<EditarGastos />} />
-							<Route path="/" element={<App />} />
+
+							<Route
+								path="/gastoCategoria"
+								element={
+									<RutaPrivada>
+										<GastoCategoria />
+									</RutaPrivada>
+								}
+							/>
+							<Route
+								path="/listaGastos"
+								element={
+									<RutaPrivada>
+										<ListaGastos />
+									</RutaPrivada>
+								}
+							/>
+							<Route
+								path="/editarGastos"
+								element={
+									<RutaPrivada>
+										<EditarGastos />
+									</RutaPrivada>
+								}
+							/>
+							<Route
+								path="/"
+								element={
+									<RutaPrivada>
+										<App />
+									</RutaPrivada>
+								}
+							/>
 						</Routes>
 					</Contenedor>
 				</BrowserRouter>
