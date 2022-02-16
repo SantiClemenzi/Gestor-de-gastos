@@ -3,7 +3,7 @@ import React from 'react';
 import { auth } from './../firebase/firebaseConfig';
 import { signOut } from 'firebase/auth';
 // react router
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // elements
 import Boton from './Boton';
 // icono svg
