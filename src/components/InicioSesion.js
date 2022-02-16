@@ -115,6 +115,7 @@ const InicioSesion = () => {
 					type="email"
 					name="email"
 					placeholder="nombre@correo.com"
+					autoComplete='username'
 					value={correo}
 					onChange={handleChange}
 					required
@@ -123,6 +124,7 @@ const InicioSesion = () => {
 					type="password"
 					name="password"
 					placeholder="Contraseña"
+					autoComplete='current-password'
 					value={contraseña}
 					onChange={handleChange}
 					required

@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet';
 // elementos
 import { Header, Titulo, ContenedorHeader } from '../elements/Header';
 import BotonRegresar from '../elements/BotonRegresar';
+// hook
+// import { useAuth } from '../contexts/AuthContext';
 
 const ListaGastos = () => {
 	return (

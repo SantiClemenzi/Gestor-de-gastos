@@ -19,6 +19,8 @@ import Contenedor from './elements/Contenedor';
 import Fondo from './elements/Fondo';
 // favicon
 import favicon from './images/logo.png';
+// contexts
+import { AuthProvider } from './contexts/AuthContext';
 
 // cargamos las familias de fuente que queremos usar
 WebFont.load({
@@ -33,18 +35,20 @@ const Index = () => {
 			<Helmet>
 				<link rel="shortcut icon" href={favicon} type="image/x-icon" />
 			</Helmet>
-			<BrowserRouter>
-				<Contenedor>
-					<Routes>
-						<Route path="/inicioSesion" element={<InicioSesion />} />
-						<Route path="/registroUsuario" element={<RegistroUsuario />} />
-						<Route path="/gastoCategoria" element={<GastoCategoria />} />
-						<Route path="/listaGastos" element={<ListaGastos />} />
-						<Route path="/editarGastos" element={<EditarGastos />} />
-						<Route path="/" element={<App />} />
-					</Routes>
-				</Contenedor>
-			</BrowserRouter>
+			<AuthProvider>
+				<BrowserRouter>
+					<Contenedor>
+						<Routes>
+							<Route path="/inicioSesion" element={<InicioSesion />} />
+							<Route path="/registroUsuario" element={<RegistroUsuario />} />
+							<Route path="/gastoCategoria" element={<GastoCategoria />} />
+							<Route path="/listaGastos" element={<ListaGastos />} />
+							<Route path="/editarGastos" element={<EditarGastos />} />
+							<Route path="/" element={<App />} />
+						</Routes>
+					</Contenedor>
+				</BrowserRouter>
+			</AuthProvider>
 			<Fondo />
 		</>
 	);

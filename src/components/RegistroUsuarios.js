@@ -139,6 +139,7 @@ const RegistroUsuarios = () => {
 					type="email"
 					name="email"
 					placeholder="nombre@correo.com"
+					autoComplete='email'
 					value={correo}
 					onChange={handleChange}
 					required
@@ -147,6 +148,7 @@ const RegistroUsuarios = () => {
 					type="password"
 					name="password-1"
 					placeholder="Contraseña"
+					autoComplete='new-password'
 					value={contraseña}
 					onChange={handleChange}
 					required
@@ -155,6 +157,7 @@ const RegistroUsuarios = () => {
 					type="password"
 					name="password-2"
 					placeholder="Repita su contraseña"
+					autoComplete='current-password'
 					value={contraseña2}
 					onChange={handleChange}
 					required
