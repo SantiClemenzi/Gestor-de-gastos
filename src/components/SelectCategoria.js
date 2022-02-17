@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// elements
+import IconoCategoria from '../elements/IconoCategoria';
 // paquetes
 import styled from 'styled-components';
 // theme
@@ -67,11 +69,11 @@ const SelectCategorias = ({ categoria, cambiarCategoria }) => {
 	// objeto con las categorias
 	const categorias = [
 		{ id: 'comida', texto: 'Comida' },
-		{ id: 'cuentas y pagos', texto: 'Cuentas y pagos' },
+		{ id: 'cuentasYpagos', texto: 'Cuentas y pagos' },
 		{ id: 'hogar', texto: 'Hogar' },
 		{ id: 'transporte', texto: 'Transporte' },
 		{ id: 'ropa', texto: 'Ropa' },
-		{ id: 'salud e higiene', texto: 'Salud e Higiene' },
+		{ id: 'saludEhigiene', texto: 'Salud e Higiene' },
 		{ id: 'compras', texto: 'Compras' },
 		{ id: 'diversion', texto: 'Diversion' },
 	];
@@ -95,6 +97,7 @@ const SelectCategorias = ({ categoria, cambiarCategoria }) => {
 								onClick={handleClick}
 								data-valor={categoria.texto}
 							>
+                                <IconoCategoria nombre={categoria.id}/>
 								{categoria.texto}
 							</Opcion>
 						);
