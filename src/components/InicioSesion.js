@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 // paquetes
+import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 // elementos
