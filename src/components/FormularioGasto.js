@@ -8,6 +8,8 @@ import {
 	ContenedorBoton,
 } from './../elements/ElementosDeFormulario';
 import Boton from '../elements/Boton';
+// components
+import SelectCategorias from './SelectCategoria';
 // imagen svg
 import { ReactComponent as IconoPlus } from './../images/plus.svg';
 
@@ -15,6 +17,8 @@ const FormularioGasto = () => {
 	// definimos de estados de los inputs
 	const [inputDescripcion, cambiarInputDescripcion] = useState('');
 	const [inputCantidad, cambiarInputCantidad] = useState('');
+	// definimos estado para la categoria del select
+	const [categoria, cambiarCategoria] = useState('Hogar');
 
 	// ejecutamos la funcion para cambiar el valor del input
 	const handleChange = (e) => {
@@ -28,7 +32,7 @@ const FormularioGasto = () => {
 	return (
 		<Formulario>
 			<ContenedorFiltros>
-				<h2>Filtro</h2>
+				<SelectCategorias categoria={categoria} cambiarCategoria={cambiarCategoria}/>
 				<h2>Day Picker</h2>
 			</ContenedorFiltros>
 			<div>
