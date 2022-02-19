@@ -8,8 +8,11 @@ import BotonRegresar from '../elements/BotonRegresar';
 import BarraTotalGastos from './BarraTotalGastos';
 // hook
 // import { useAuth } from '../contexts/AuthContext';
+import useObtenerGastos from './../hooks/useObtenerGastos';
 
 const ListaGastos = () => {
+	const [gastos] = useObtenerGastos();
+	console.log(gastos);
 	return (
 		<>
 			<Helmet>
