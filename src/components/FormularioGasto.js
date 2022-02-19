@@ -8,6 +8,7 @@ import {
 	ContenedorBoton,
 } from './../elements/ElementosDeFormulario';
 import Boton from '../elements/Boton';
+import Alerta from './../elements/Alerta';
 // components
 import SelectCategorias from './SelectCategoria';
 import DayPicker from './DayPicker';
@@ -26,6 +27,9 @@ const FormularioGasto = () => {
 	const [inputCantidad, cambiarInputCantidad] = useState('');
 	// definimos estado para la inputCategoria del select
 	const [inputCategoria, cambiarCategoria] = useState('Hogar');
+	// creamos estado de alerta
+	const [estadoAlerta, cambiarEstadoAlerta] = useState(false);
+	const [alerta, cambiarAlerta] = useState({});
 	// definimos el estado para el dayPicker
 	const [inputFecha, cambiarFecha] = useState(new Date());
 	// extraemos el usario
@@ -45,19 +49,29 @@ const FormularioGasto = () => {
 
 		// agregamos decimales a cantidad
 		let cantidadDecimales = parseFloat(inputCantidad).toFixed(2);
-
-		// enviamos los datos
-		agregarGasto({
-			categoria: inputCategoria,
-			fecha: getUnixTime(inputFecha),
-			descripcion: inputDescripcion,
-			cantidad: cantidadDecimales,
-			uIdUsuario: usuario.uid,
-		});
-
-		// limpiamos los input's
-		cambiarInputDescripcion('');
-		cambiarInputCantidad('');
+		// verificamos si valor y descripcion estan vacios
+		if (inputDescripcion !== '' && inputCantidad !== '') {
+			// enviamos los datos
+			agregarGasto({
+				categoria: inputCategoria,
+				fecha: getUnixTime(inputFecha),
+				descripcion: inputDescripcion,
+				cantidad: cantidadDecimales,
+				uIdUsuario: usuario.uid,
+			}).then(() => {
+				// limpiamos los input's
+				cambiarInputDescripcion('');
+				cambiarInputCantidad('');
+				cambiarCategoria('hogar');
+				cambiarFecha(new Date());
+				// mostramos alerta
+				cambiarEstadoAlerta(true);
+				cambiarAlerta({ tipo: 'exito', mensaje: 'Nuevo gasto agregado' });
+			});
+		} else {
+			cambiarEstadoAlerta(true);
+			cambiarAlerta({ tipo: 'error', mensaje: 'Completá todos los campos' });
+		}
 	};
 
 	return (
@@ -90,6 +104,12 @@ const FormularioGasto = () => {
 					</Boton>
 				</ContenedorBoton>
 			</div>
+			<Alerta
+				tipo={alerta.tipo}
+				mensaje={alerta.mensaje}
+				estadoAlerta={estadoAlerta}
+				cambiarEstadoAlerta={cambiarEstadoAlerta}
+			/>
 		</Formulario>
 	);
 };
