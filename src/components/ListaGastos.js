@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet';
 // elementos
 import { Header, Titulo, ContenedorHeader } from '../elements/Header';
 import BotonRegresar from '../elements/BotonRegresar';
+// components
+import BarraTotalGastos from './BarraTotalGastos';
 // hook
 // import { useAuth } from '../contexts/AuthContext';
 
@@ -19,6 +21,7 @@ const ListaGastos = () => {
 					<Titulo>Lista de gastos</Titulo>
 				</ContenedorHeader>
 			</Header>
+			<BarraTotalGastos/>
 		</>
 	);
 };

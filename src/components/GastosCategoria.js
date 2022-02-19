@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet';
 // elementos
 import { Header, Titulo, ContenedorHeader } from '../elements/Header';
 import BotonRegresar from '../elements/BotonRegresar';
+// components
+import BarraTotalGastos from './BarraTotalGastos';
 
 const GastosCategoria = () => {
 	return (
@@ -17,6 +19,7 @@ const GastosCategoria = () => {
 					<Titulo>Categoria de gastos</Titulo>
 				</ContenedorHeader>
 			</Header>
+			<BarraTotalGastos/>
 		</>
 	);
 };
