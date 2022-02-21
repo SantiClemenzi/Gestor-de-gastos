@@ -68,14 +68,14 @@ const SelectCategorias = ({ categoria, cambiarCategoria }) => {
 
 	// objeto con las categorias
 	const categorias = [
-		{ id: 'comida', texto: 'Comida' },
-		{ id: 'cuentasYpagos', texto: 'Cuentas y pagos' },
-		{ id: 'hogar', texto: 'Hogar' },
-		{ id: 'transporte', texto: 'Transporte' },
-		{ id: 'ropa', texto: 'Ropa' },
-		{ id: 'saludEhigiene', texto: 'Salud e Higiene' },
-		{ id: 'compras', texto: 'Compras' },
-		{ id: 'diversion', texto: 'Diversion' },
+		{ id: 'Comida', texto: 'Comida' },
+		{ id: 'Cuentas y pagos', texto: 'Cuentas y pagos' },
+		{ id: 'Hogar', texto: 'Hogar' },
+		{ id: 'Transporte', texto: 'Transporte' },
+		{ id: 'Ropa', texto: 'Ropa' },
+		{ id: 'Salud e Higiene', texto: 'Salud e Higiene' },
+		{ id: 'Compras', texto: 'Compras' },
+		{ id: 'Diversion', texto: 'Diversion' },
 	];
 
 	// funcion para mostrar la categoria seleccionada
