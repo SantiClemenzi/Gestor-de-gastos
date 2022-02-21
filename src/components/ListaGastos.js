@@ -36,7 +36,7 @@ import { ReactComponent as IconoEdit } from './../images/editar.svg';
 import { ReactComponent as IconoDelet } from './../images/borrar.svg';
 
 const ListaGastos = () => {
-	const [gastos] = useObtenerGastos();
+	const [gastos, cargarMasGastos, hayMasPorCargar] = useObtenerGastos();
 	// transformamos el formato de la fecha
 	const formatoFecha = (fecha) => {
 		return format(fromUnixTime(fecha), "dd 'de' MMMM 'del' yyyy", {
@@ -98,9 +98,14 @@ const ListaGastos = () => {
 					);
 				})}
 			</Lista>
-			<ContenedorBotonCentral>
-				<BotonCargarMas>Cargar Más</BotonCargarMas>
-			</ContenedorBotonCentral>
+			{/* si el valor es true mostramos el btn */}
+			{hayMasPorCargar && (
+				<ContenedorBotonCentral>
+					<BotonCargarMas onClick={() => cargarMasGastos()}>
+						Cargar Más
+					</BotonCargarMas>
+				</ContenedorBotonCentral>
+			)}
 			{gastos.length === 0 && (
 				<ContenedorSubtitulo>
 					<Subtitulo>No se encuentran gastos</Subtitulo>
