@@ -31,9 +31,11 @@ import BarraTotalGastos from './BarraTotalGastos';
 import useObtenerGastos from './../hooks/useObtenerGastos';
 // funciones
 import convertirMoneda from './../funciones/convertirMoneda';
+// firebase
+import eliminarGasto from '../firebase/eliminarGasto';
 // iconos
 import { ReactComponent as IconoEdit } from './../images/editar.svg';
-import { ReactComponent as IconoDelet } from './../images/borrar.svg';
+import { ReactComponent as IconoDelete } from './../images/borrar.svg';
 
 const ListaGastos = () => {
 	const [gastos, cargarMasGastos, hayMasPorCargar] = useObtenerGastos();
@@ -89,8 +91,8 @@ const ListaGastos = () => {
 									<BotonAccion as={Link} to={`/editarGastos/${gasto.id}`}>
 										<IconoEdit />
 									</BotonAccion>
-									<BotonAccion>
-										<IconoDelet />
+									<BotonAccion onClick={()=>eliminarGasto(gasto.id)}>
+										<IconoDelete />
 									</BotonAccion>
 								</ContenedorBotones>
 							</ElementoLista>
