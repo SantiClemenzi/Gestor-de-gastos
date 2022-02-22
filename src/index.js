@@ -60,7 +60,7 @@ const Index = () => {
 								}
 							/>
 							<Route
-								path="/editarGastos"
+								path="/editarGastos/:id"
 								element={
 									<RutaPrivada>
 										<EditarGastos />

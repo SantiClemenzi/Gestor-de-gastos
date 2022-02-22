@@ -10,8 +10,6 @@ import BotonRegresar from '../elements/BotonRegresar';
 import {
 	Lista,
 	ElementoLista,
-	ListaDeCategorias,
-	ElementoListaCategorias,
 	Categoria,
 	Descripcion,
 	Valor,

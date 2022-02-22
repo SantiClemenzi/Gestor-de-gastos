@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // elements
 import {
 	ContenedorFiltros,
@@ -11,17 +11,20 @@ import Boton from '../elements/Boton';
 import Alerta from './../elements/Alerta';
 // components
 import SelectCategorias from './SelectCategoria';
+// packages
+import { useNavigate } from 'react-router-dom';
 import DayPicker from './DayPicker';
-// import fromUnixTime from 'date-fns/fromUnixTime';
+import fromUnixTime from 'date-fns/fromUnixTime';
 import getUnixTime from 'date-fns/getUnixTime';
 // firebase components
 import agregarGasto from '../firebase/agregarGasto';
+import editarGasto from '../firebase/editarGasto';
 // contexts
 import { useAuth } from './../contexts/AuthContext';
 // imagen svg
 import { ReactComponent as IconoPlus } from './../images/plus.svg';
 
-const FormularioGasto = () => {
+const FormularioGasto = ({ gasto }) => {
 	// definimos de estados de los inputs
 	const [inputDescripcion, cambiarInputDescripcion] = useState('');
 	const [inputCantidad, cambiarInputCantidad] = useState('');
@@ -34,6 +37,25 @@ const FormularioGasto = () => {
 	const [inputFecha, cambiarFecha] = useState(new Date());
 	// extraemos el usario
 	const { usuario } = useAuth();
+	// definimos navigate
+	const navigate = useNavigate();
+
+	// comprobamos si hay un gasto agregado
+	// de ser asi restablecemos todos los valores
+	useEffect(() => {
+		// comprobamos que el gasto exista
+		if (gasto) {
+			if (gasto.data().uIdUsuario === usuario.uid) {
+				console.log(gasto.data());
+				cambiarInputDescripcion(gasto.data().descripcion);
+				cambiarInputCantidad(gasto.data().cantidad);
+				cambiarFecha(fromUnixTime(gasto.data().fecha));
+				cambiarCategoria(gasto.data().categoria);
+			} else {
+				navigate('/listaGastos');
+			}
+		}
+	}, [gasto, usuario, navigate]);
 
 	// ejecutamos la funcion para cambiar el valor del input
 	const handleChange = (e) => {
@@ -51,23 +73,36 @@ const FormularioGasto = () => {
 		let cantidadDecimales = parseFloat(inputCantidad).toFixed(2);
 		// verificamos si valor y descripcion estan vacios
 		if (inputDescripcion !== '' && inputCantidad !== '') {
-			// enviamos los datos
-			agregarGasto({
-				categoria: inputCategoria,
-				fecha: getUnixTime(inputFecha),
-				descripcion: inputDescripcion,
-				cantidad: cantidadDecimales,
-				uIdUsuario: usuario.uid,
-			}).then(() => {
-				// limpiamos los input's
-				cambiarInputDescripcion('');
-				cambiarInputCantidad('');
-				cambiarCategoria('hogar');
-				cambiarFecha(new Date());
-				// mostramos alerta
-				cambiarEstadoAlerta(true);
-				cambiarAlerta({ tipo: 'exito', mensaje: 'Nuevo gasto agregado' });
-			});
+			if (gasto) {
+				// console.log(gasto.data().categoria)
+				editarGasto({
+					id: gasto.id,
+					categoria: inputCategoria,
+					fecha: getUnixTime(inputFecha),
+					descripcion: inputDescripcion,
+					cantidad:  cantidadDecimales,
+				}).then(() => {
+					navigate('/listaGastos');
+				});
+			} else {
+				// enviamos los datos
+				agregarGasto({
+					categoria: inputCategoria,
+					fecha: getUnixTime(inputFecha),
+					descripcion: inputDescripcion,
+					cantidad: cantidadDecimales,
+					uIdUsuario: usuario.uid,
+				}).then(() => {
+					// limpiamos los input's
+					cambiarInputDescripcion('');
+					cambiarInputCantidad('');
+					cambiarCategoria('hogar');
+					cambiarFecha(new Date());
+					// mostramos alerta
+					cambiarEstadoAlerta(true);
+					cambiarAlerta({ tipo: 'exito', mensaje: 'Nuevo gasto agregado' });
+				});
+			}
 		} else {
 			cambiarEstadoAlerta(true);
 			cambiarAlerta({ tipo: 'error', mensaje: 'Completá todos los campos' });
@@ -100,7 +135,7 @@ const FormularioGasto = () => {
 				></InputGrande>
 				<ContenedorBoton>
 					<Boton as="button" primario conIcono type="submit">
-						AGREGAR GASTO <IconoPlus />
+						{gasto ? 'EDITAR GASTO' : 'AGREGAR GASTO'} <IconoPlus />
 					</Boton>
 				</ContenedorBoton>
 			</div>
