@@ -5,12 +5,17 @@ import styled from "styled-components";
 import theme from "../theme";
 // funciones
 import formatearCantidad from './../funciones/convertirMoneda';
+// contexts
+import { useTotalMes } from "../contexts/TotalGastadoMes";
 
 const BarraTotalGastos = () => {
+    // ejecutamos el contexto para obtener el gasto
+    const {total} = useTotalMes();
+
     return ( 
         <BarraTotal>
-            <p>total gastado</p>
-            <p>{formatearCantidad(300.50)}</p>
+            <p>total gastado en el mes: </p>
+            <p>{formatearCantidad(total)}</p>
         </BarraTotal>
      );
 }

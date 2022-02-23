@@ -6,8 +6,12 @@ import { Header, Titulo, ContenedorHeader } from '../elements/Header';
 import BotonRegresar from '../elements/BotonRegresar';
 // components
 import BarraTotalGastos from './BarraTotalGastos';
+// hooks
+// import useObtenerGastoMes from '../hooks/useObtenerGastoMes';
 
 const GastosCategoria = () => {
+
+	
 	return (
 		<>
 			<Helmet>

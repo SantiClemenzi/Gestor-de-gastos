@@ -71,7 +71,6 @@ const ListaGastos = () => {
 			</Header>
 			<Lista>
 				{gastos.map((gasto, index) => {
-					console.log(gasto);
 					return (
 						<div key={gasto.id}>
 							{/* si son fechas iguales distintas ejecuta la etiqueta Fecha */}

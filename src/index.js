@@ -22,6 +22,7 @@ import Fondo from './elements/Fondo';
 import favicon from './images/logo.png';
 // contexts
 import { AuthProvider } from './contexts/AuthContext';
+import {TotalGastadoProvider} from './contexts/TotalGastadoMes';
 
 // cargamos las familias de fuente que queremos usar
 WebFont.load({
@@ -37,47 +38,49 @@ const Index = () => {
 				<link rel="shortcut icon" href={favicon} type="image/x-icon" />
 			</Helmet>
 			<AuthProvider>
-				<BrowserRouter>
-					<Contenedor>
-						<Routes>
-							<Route path="/inicioSesion" element={<InicioSesion />} />
-							<Route path="/registroUsuario" element={<RegistroUsuario />} />
+				<TotalGastadoProvider>
+					<BrowserRouter>
+						<Contenedor>
+							<Routes>
+								<Route path="/inicioSesion" element={<InicioSesion />} />
+								<Route path="/registroUsuario" element={<RegistroUsuario />} />
 
-							<Route
-								path="/gastoCategoria"
-								element={
-									<RutaPrivada>
-										<GastoCategoria />
-									</RutaPrivada>
-								}
-							/>
-							<Route
-								path="/listaGastos"
-								element={
-									<RutaPrivada>
-										<ListaGastos />
-									</RutaPrivada>
-								}
-							/>
-							<Route
-								path="/editarGastos/:id"
-								element={
-									<RutaPrivada>
-										<EditarGastos />
-									</RutaPrivada>
-								}
-							/>
-							<Route
-								path="/"
-								element={
-									<RutaPrivada>
-										<App />
-									</RutaPrivada>
-								}
-							/>
-						</Routes>
-					</Contenedor>
-				</BrowserRouter>
+								<Route
+									path="/gastoCategoria"
+									element={
+										<RutaPrivada>
+											<GastoCategoria />
+										</RutaPrivada>
+									}
+								/>
+								<Route
+									path="/listaGastos"
+									element={
+										<RutaPrivada>
+											<ListaGastos />
+										</RutaPrivada>
+									}
+								/>
+								<Route
+									path="/editarGastos/:id"
+									element={
+										<RutaPrivada>
+											<EditarGastos />
+										</RutaPrivada>
+									}
+								/>
+								<Route
+									path="/"
+									element={
+										<RutaPrivada>
+											<App />
+										</RutaPrivada>
+									}
+								/>
+							</Routes>
+						</Contenedor>
+					</BrowserRouter>
+				</TotalGastadoProvider>
 			</AuthProvider>
 			<Fondo />
 		</>

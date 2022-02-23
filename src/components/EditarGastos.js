@@ -14,7 +14,7 @@ import BotonRegresar from './../elements/BotonRegresar';
 const EditarGastos = () => {
 	const { id } = useParams();
 	const [gasto] = useObtenerGasto(id);
-	// console.log(gasto);
+
 	return (
         <>
             <Helmet>

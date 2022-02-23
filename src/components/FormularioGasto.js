@@ -46,7 +46,6 @@ const FormularioGasto = ({ gasto }) => {
 		// comprobamos que el gasto exista
 		if (gasto) {
 			if (gasto.data().uIdUsuario === usuario.uid) {
-				console.log(gasto.data());
 				cambiarInputDescripcion(gasto.data().descripcion);
 				cambiarInputCantidad(gasto.data().cantidad);
 				cambiarFecha(fromUnixTime(gasto.data().fecha));
